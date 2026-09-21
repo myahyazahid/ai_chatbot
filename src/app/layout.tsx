@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import NextAuthProvider from "@/components/NextAuthProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -6,10 +7,12 @@ export const metadata: Metadata = {
   description: "AI Assistant",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full">
-      <body className="h-full overflow-hidden">{children}</body>
+      <body className="h-full overflow-hidden">
+        <NextAuthProvider>{children}</NextAuthProvider>
+      </body>
     </html>
   );
 }

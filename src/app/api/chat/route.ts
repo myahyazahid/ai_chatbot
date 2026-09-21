@@ -1,5 +1,7 @@
 import { NextRequest } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(req: NextRequest) {
   const { messages, model } = await req.json();
   const apiKey = process.env.API_KEY;

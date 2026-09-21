@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  /* Claude warm palette */
-  --color-bg-primary: #F5F4ED;
-  --color-bg-secondary: #ECEAE1;
-  --color-bg-sidebar: #ECEAE1;
-  --color-bg-hover: #E5E3D9;
+  /* Rezure warm palette */
+  --color-bg-primary: #FAF7F7;
+  --color-bg-secondary: #F5F1F1;
+  --color-bg-sidebar: #F5F1F1;
+  --color-bg-hover: #EBE6E6;
   --color-bg-input: #FFFFFF;
-  --color-bg-user-msg: #F0EFE7;
-  --color-bg-active: #DDD9CE;
-  --color-bg-code: #2A2927;
+  --color-bg-user-msg: #F0ECEC;
+  --color-bg-active: #E3DDDD;
+  --color-bg-code: #1A1919;
 
-  --color-text-primary: #141413;
-  --color-text-secondary: #5E5D59;
-  --color-text-tertiary: #87867F;
-  --color-text-placeholder: #A8A7A0;
+  --color-text-primary: #141215;
+  --color-text-secondary: #5F595B;
+  --color-text-tertiary: #8A8385;
+  --color-text-placeholder: #A6A0A2;
 
-  --color-border-primary: rgba(31, 30, 29, 0.15);
-  --color-border-secondary: rgba(31, 30, 29, 0.1);
-  --color-border-input: rgba(31, 30, 29, 0.2);
+  --color-border-primary: rgba(20, 18, 21, 0.15);
+  --color-border-secondary: rgba(20, 18, 21, 0.1);
+  --color-border-input: rgba(20, 18, 21, 0.2);
 
   --color-accent: #C96442;
   --color-accent-hover: #B85A3A;

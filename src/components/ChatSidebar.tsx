@@ -1,6 +1,7 @@
 "use client";
 
 import { Conversation } from "@/lib/types";
+import { signOut, useSession } from "next-auth/react";
 
 interface Props {
   conversations: Conversation[];
@@ -41,6 +42,8 @@ export default function ChatSidebar({
       c.updatedAt >= lastWeek.getTime() && c.updatedAt < yesterday.getTime()
   );
   const olderConvs = sorted.filter((c) => c.updatedAt < lastWeek.getTime());
+
+  const { data: session } = useSession();
 
   if (todayConvs.length) groups.push({ label: "Today", convs: todayConvs });
   if (yesterdayConvs.length)
@@ -190,23 +193,51 @@ export default function ChatSidebar({
 
         {/* Footer */}
         <div
-          className="px-3 py-3 flex items-center gap-2.5"
+          className="px-3 py-3 flex items-center justify-between"
           style={{ borderTop: "1px solid var(--color-border-secondary)" }}
         >
-          <div
-            className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium shrink-0"
-            style={{ backgroundColor: "var(--color-accent)" }}
-          >
-            U
-          </div>
-          <div className="flex-1 min-w-0">
-            <p
-              className="text-[14px] font-medium truncate"
-              style={{ color: "var(--color-text-primary)" }}
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div
+              className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-medium shrink-0 overflow-hidden"
+              style={{ backgroundColor: "var(--color-accent)" }}
             >
-              User
-            </p>
+              {session?.user?.image ? (
+                <img src={session.user.image} alt={session.user.name || "User"} className="w-full h-full object-cover" />
+              ) : (
+                session?.user?.name?.[0] || "U"
+              )}
+            </div>
+            <div className="flex-1 min-w-0">
+              <p
+                className="text-[14px] font-medium truncate"
+                style={{ color: "var(--color-text-primary)" }}
+              >
+                {session?.user?.name || "User"}
+              </p>
+            </div>
           </div>
+          <button
+            onClick={() => signOut({ callbackUrl: "/login" })}
+            className="p-1.5 rounded-md transition-colors hover:bg-[var(--color-bg-hover)] cursor-pointer z-50"
+            style={{ color: "var(--color-text-tertiary)" }}
+            title="Sign out"
+            type="button"
+          >
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+          </button>
         </div>
       </aside>
     </>
